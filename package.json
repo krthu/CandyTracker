@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -16,4 +17,7 @@
     "body-parser": "^1.20.2",
     "express": "^4.19.2"
   }
+
+
+  
 }
