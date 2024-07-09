@@ -16,7 +16,7 @@ const Candy = sequelize.define('Candy', {
 
 });
 
-const ExpiryDate = sequelize.define('Candy', {
+const ExpiryDate = sequelize.define('ExpiryDate', {
     date: {
         type: DataTypes.DATE,
         allowNull: false,
