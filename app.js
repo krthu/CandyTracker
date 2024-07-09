@@ -119,7 +119,7 @@ app.delete('/expiry/:id', async (req,res) => {
         const date = await ExpiryDate.findByPk(id);
         if (date){
             await date.destroy();
-            res.status(200).send({ message: `Date ${date} with id: ${id} deleted successfully`})
+            res.status(200).send({ message: `Date with id: ${id} deleted successfully`})
         } else{
             res.status(404).send({ error: 'Date not found'})
         }
@@ -127,8 +127,51 @@ app.delete('/expiry/:id', async (req,res) => {
         res.status(500).send({error: error.message})
 
     }
-
 });
+
+app.get("/expiring", async (req, res) => {
+    try {
+        const candies = await Candy.findAll({
+
+            include: {
+                model: ExpiryDate,
+                attributes: ['date', 'id'],
+            },
+            order: [
+                [{ model: ExpiryDate}, 'date', 'ASC']
+            ]
+        });
+
+        res.status(200).send({ candies });
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
+
+
+app.get("/expiring2", async (req, res) => {
+    console.log("We are here that is good!")
+    try {
+        const candies = await Candy.findAll({
+            include: {
+                model: ExpiryDate,
+               
+                attributes: ['date'],
+               
+               
+            },
+            order: [
+                [{model: ExpiryDate}, 'date', 'ASC']
+            ]
+        });
+        res.status(200).send({candies})
+
+    } catch(error){
+        res.status(500).send({ error: error.message})
+    }
+});
+
+
 
 
 
