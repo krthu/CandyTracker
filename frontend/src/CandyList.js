@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import CandyRowItem from './CandyRowItem';
 import axios from 'axios';
 
 const CandyList = () => {
@@ -11,8 +12,10 @@ const CandyList = () => {
         const fetchCandies = async () => {
 
             try {
+                
                 const response = await axios.get('http://localhost:3000/candy');
                 setCandies(response.data.candies); // Assuming the response is an object with a key 'candys'
+                console.log(candies)
                 setLoading(false);
             } catch (error) {
                 setError(error);
@@ -27,11 +30,15 @@ const CandyList = () => {
     if (error) return <p>Error fetching candies: {error.message}</p>;
 
     return (
+
+
         <div>
             <h1>Candies</h1>
             <ul>
-                {candies && candies.map((candy) => ( // Lägg till kontroll här
-                    <li key={candy.id}>{candy.name}</li>
+                 {candies && candies.map((candy) => ( 
+
+                        <CandyRowItem candy={candy} />
+               
                 ))}
             </ul>
         </div>
