@@ -74,3 +74,7 @@ Config/database.sqlite
 
 .DS_Store
 
+# Frontend specific
+Frontend/build/
+Frontend/.env
+Frontend/node_modules/

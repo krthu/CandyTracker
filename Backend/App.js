@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 const candyRoutes = require('./routes/candyRoutes');
 const expiryDateRoutes = require('./routes/expiryDateRoutes');
+
+app.use(cors()); //Allow all CORS-req change later 
 
 app.use(express.json());
 
